@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
     private let profileTableView = UITableView(frame: .zero, style: .grouped)
     private let postTableId = "PostTableViewCell"
-   
-    
-    
+
    
 
     

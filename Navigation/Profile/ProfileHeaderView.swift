@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView{
     //MARK: - Create Views
@@ -84,38 +85,7 @@ class ProfileHeaderView: UIView{
         #else
         backgroundColor = .lightGray
         #endif
-        //backgroundColor = .lightGray
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(avatarImageView)
-        addSubview(setStatusButton)
-        addSubview(statusTextField)
         
-        let constraints = [
-
-            avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 120),
-            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
-
-            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-
-            statusLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: -30),
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
-            statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-
-            ]
-        NSLayoutConstraint.activate(constraints)
     }
     //MARK: - Avatar Corner Radius
     override func layoutSubviews() {
@@ -124,7 +94,42 @@ class ProfileHeaderView: UIView{
  
      override init(frame: CGRect) {
          super.init(frame: frame)
-        setupViews()
+        self.addSubview(avatarImageView)
+        self.addSubview(fullNameLabel)
+        self.addSubview(statusLabel)
+        self.addSubview(statusTextField)
+        self.addSubview(setStatusButton)
+        
+        avatarImageView.snp.makeConstraints { avatar in
+            avatar.width.height.equalTo(120)
+            avatar.top.equalTo(safeAreaLayoutGuide).offset(16)
+            avatar.left.equalTo(safeAreaLayoutGuide).offset(16)
+        }
+            
+        fullNameLabel.snp.makeConstraints { fullNL in
+            fullNL.top.equalTo(safeAreaLayoutGuide).offset(27)
+            fullNL.left.equalTo(avatarImageView.snp.right).offset(16)
+        }
+            
+        statusLabel.snp.makeConstraints { status in
+            status.top.equalTo(avatarImageView.snp.bottom).offset(-30)
+            status.left.equalTo(fullNameLabel.snp.left)
+        }
+        
+        statusTextField.snp.makeConstraints { statusText in
+            statusText.top.equalTo(statusLabel.snp.bottom).offset(16)
+            statusText.left.equalTo(fullNameLabel.snp.left)
+            statusText.right.equalTo(safeAreaLayoutGuide).offset(-16)
+            statusText.height.equalTo(40)
+        }
+        
+        setStatusButton.snp.makeConstraints { setButton in
+            setButton.top.equalTo(statusTextField.snp.bottom).offset(16)
+            setButton.left.equalTo(safeAreaLayoutGuide).offset(16)
+            setButton.right.equalTo(safeAreaLayoutGuide).offset(-16)
+            setButton.height.equalTo(50)
+            
+        }
         
      }
  

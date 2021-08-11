@@ -7,21 +7,27 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
     var post: PostPage? {
         didSet{
-            postImageView.image = UIImage(named: post?.image ?? "noImage")
             postDescription.text = post?.description
             postAuthor.text = post?.author
             postLikes.text = "Likes: \(post?.likes ?? 0)"
             postViews.text = "Views: \(post?.views ?? 0)"
-            
+            if let image = UIImage(named: post?.image ?? "noImage") {filter.processImage(sourceImage: image , filter: post?.filter ?? .noir) { (image) in postImageView.image = image
+                }
+            }
+
         }
     }
-    //MARK: - Create views
     
+    private let filter = ImageProcessor()
+   
+    //MARK: - Create views
+   
     private let postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit

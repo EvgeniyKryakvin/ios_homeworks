@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     private let profileTableView = UITableView(frame: .zero, style: .grouped)
@@ -21,13 +22,7 @@ class ProfileViewController: UIViewController {
    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        #if DEBUG
-//          view.backgroundColor = .red
-//        #else
-//        view.backgroundColor = .yellow
-//        #endif
-        
+
         setupTableViewConstraints()
         setupProfileTableView()
        

@@ -44,41 +44,6 @@ class PhotosTableViewCell: UITableViewCell {
         let thirdImage = createStackImage(image: "Honda")
         let fourthImage = createStackImage(image: "Voge300ac")
         
-//        let firstImage: UIImageView = {
-//            let firstImage = UIImageView()
-//            firstImage.image = UIImage(named: "BMW")
-//            firstImage.clipsToBounds = true
-//            firstImage.layer.cornerRadius = 6
-//            firstImage.contentMode = .scaleAspectFill
-//            return firstImage
-//        }()
-//
-//        let secondImage: UIImageView = {
-//            let secondImage = UIImageView()
-//            secondImage.image = UIImage(named: "Cross")
-//            secondImage.clipsToBounds = true
-//            secondImage.layer.cornerRadius = 6
-//            secondImage.contentMode = .scaleAspectFill
-//            return secondImage
-//        }()
-//
-//        let thirdImage: UIImageView = {
-//            let thirdImage = UIImageView()
-//            thirdImage.image = UIImage(named: "Honda")
-//            thirdImage.clipsToBounds = true
-//            thirdImage.layer.cornerRadius = 6
-//            thirdImage.contentMode = .scaleAspectFill
-//            return thirdImage
-//        }()
-//
-//        let fourthImage: UIImageView = {
-//            let fourthImage = UIImageView()
-//            fourthImage.image = UIImage(named: "Voge300ac")
-//            fourthImage.clipsToBounds = true
-//            fourthImage.layer.cornerRadius = 6
-//            fourthImage.contentMode = .scaleAspectFill
-//            return fourthImage
-//        }()
         
         photoStackView.distribution = .fillEqually
         photoStackView.spacing = 8

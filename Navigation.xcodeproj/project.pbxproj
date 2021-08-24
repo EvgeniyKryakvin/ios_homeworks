@@ -20,7 +20,11 @@
 		3F6E1ECE265A934F00CDFA03 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E1ECD265A934F00CDFA03 /* PhotosTableViewCell.swift */; };
 		3F6E1ED1265A995600CDFA03 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E1ED0265A995600CDFA03 /* PhotoCollectionViewController.swift */; };
 		3F6E1ED5265A9C1500CDFA03 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E1ED4265A9C1500CDFA03 /* PhotoCollectionViewCell.swift */; };
+		3F8BDAE126D424770004F338 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8BDAE026D424770004F338 /* TestUserService.swift */; };
 		3FBA8E7526BD73A6002AA789 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 3FBA8E7426BD73A6002AA789 /* iOSIntPackage */; };
+		3FBF801326C555A50063ACB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF801226C555A50063ACB4 /* User.swift */; };
+		3FBF801726C559510063ACB4 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF801626C559510063ACB4 /* CurrentUserService.swift */; };
+		3FBF801B26C5597C0063ACB4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBF801A26C5597C0063ACB4 /* UserService.swift */; };
 		3FC0353626B1BE5500C06929 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC0352D26B1BE5500C06929 /* StorageService.framework */; };
 		3FC0353D26B1BE5500C06929 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0353C26B1BE5500C06929 /* StorageServiceTests.swift */; };
 		3FC0353F26B1BE5500C06929 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FC0352F26B1BE5500C06929 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +94,10 @@
 		3F6E1ECD265A934F00CDFA03 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		3F6E1ED0265A995600CDFA03 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		3F6E1ED4265A9C1500CDFA03 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F8BDAE026D424770004F338 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		3FBF801226C555A50063ACB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3FBF801626C559510063ACB4 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		3FBF801A26C5597C0063ACB4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		3FC0352D26B1BE5500C06929 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC0352F26B1BE5500C06929 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		3FC0353026B1BE5500C06929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				3FBF801126C5557D0063ACB4 /* User */,
 				3F6E1EC7265A830F00CDFA03 /* PhotoCollection */,
 				3F5665C126343C9300C49737 /* Storage */,
 				3FA99FCE2630B22500911488 /* Post */,
@@ -219,6 +228,17 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		3FBF801126C5557D0063ACB4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3FBF801226C555A50063ACB4 /* User.swift */,
+				3FBF801626C559510063ACB4 /* CurrentUserService.swift */,
+				3FBF801A26C5597C0063ACB4 /* UserService.swift */,
+				3F8BDAE026D424770004F338 /* TestUserService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		3FC0352E26B1BE5500C06929 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +265,6 @@
 				4C88B29AC4F74CA5F5DBFB8E /* Pods-Navigation.debug.xcconfig */,
 				D816F07CEF069644FE63F539 /* Pods-Navigation.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -449,10 +468,14 @@
 				3FF1A5F4265EAC3E0090A938 /* PhotoStorage.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
+				3FBF801326C555A50063ACB4 /* User.swift in Sources */,
 				3FDB5CB3262C78D100214AC9 /* LogInViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				3F54BC66260BD2820011AAAB /* ProfileHeaderView.swift in Sources */,
+				3FBF801726C559510063ACB4 /* CurrentUserService.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
+				3FBF801B26C5597C0063ACB4 /* UserService.swift in Sources */,
+				3F8BDAE126D424770004F338 /* TestUserService.swift in Sources */,
 				3F54BC6A260BD2A90011AAAB /* ProfileViewController.swift in Sources */,
 				3F6E1ED5265A9C1500CDFA03 /* PhotoCollectionViewCell.swift in Sources */,
 				3F5665B52631ED7600C49737 /* Storage.swift in Sources */,

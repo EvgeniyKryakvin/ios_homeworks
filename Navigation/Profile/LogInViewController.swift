@@ -10,6 +10,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    private let logInUserService = CurrentUserService()
+    private let testUserService = TestUserService()
+    
     //MARK: - Create views
     
     private let logInImage: UIImageView = {
@@ -95,10 +98,18 @@ class LogInViewController: UIViewController {
     }()
     
     @objc private func logInButtonPressed() {
-        //let controller = ProfileViewController()
-        let vc =  storyboard?.instantiateViewController(identifier: "ProfileViewController")
-        //navigationController?.show(controller, sender: LogInViewController())
-        navigationController?.show(vc!, sender: LogInViewController())
+        #if DEBUG
+        if let username = usernameTextField.text,
+            let _ = testUserService.checkUser(userName: username) {
+            let testVC = ProfileViewController(userData: testUserService, userName: username)
+            navigationController?.pushViewController(testVC, animated: true)} else { print("Can't find user")}
+        #else
+        if let username = usernameTextField.text,
+           let _ = logInUserService.checkUser(userName: username) {
+            let vc = ProfileViewController(userData: logInUserService, userName: username)
+            navigationController?.pushViewController(vc, animated: true)} else { print("Can't find user")}
+
+        #endif
         
         
     }

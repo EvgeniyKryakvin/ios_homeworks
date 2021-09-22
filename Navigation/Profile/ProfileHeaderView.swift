@@ -11,7 +11,7 @@ import SnapKit
 
 class ProfileHeaderView: UIView{
     //MARK: - Create Views
-    private let fullNameLabel: UILabel = {
+    let fullNameLabel: UILabel = {
          let fullNameLabel = UILabel()
          fullNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
          fullNameLabel.textColor = .black
@@ -21,7 +21,7 @@ class ProfileHeaderView: UIView{
          return fullNameLabel
          }()
  
-     private let statusLabel: UILabel = {
+     let statusLabel: UILabel = {
          let statusLabel = UILabel()
          statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
          statusLabel.textColor = .gray
@@ -31,7 +31,7 @@ class ProfileHeaderView: UIView{
          return statusLabel
          }()
  
-     private let avatarImageView: UIImageView = {
+     let avatarImageView: UIImageView = {
          let avatarImageView = UIImageView()
          avatarImageView.contentMode = .scaleAspectFill
          avatarImageView.image = UIImage(named: "cat2")

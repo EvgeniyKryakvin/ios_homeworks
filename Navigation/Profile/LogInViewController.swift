@@ -10,6 +10,10 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+
+    //weak var delegate: LoginViewControllerDelegate?
+    var loginFactory: MyLoginFactory?
+    
     private let logInUserService = CurrentUserService()
     private let testUserService = TestUserService()
     
@@ -114,6 +118,41 @@ class LogInViewController: UIViewController {
         
     }
     
+
+    private func alertLoginPasswd() {
+        let alertController = UIAlertController(title: "Invalid login or password", message: "Try again", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc private func logInButtonPressed() {
+        
+        #if DEBUG
+        let userService = CurrentUserService()
+        #else
+        let userService = TestUserService()
+        #endif
+    
+//        if let username = usernameTextField.text, delegate?.check(enteredLogin: username, enteredPassword: passwordField.text ?? "") == true {
+//
+//        let profileVC = ProfileViewController(userData: userService, userName: username)
+//            navigationController?.pushViewController(profileVC, animated: true)
+//        } else {
+//            alertLoginPasswd()
+//        }
+        
+        if let username = usernameTextField.text,
+           let inspector = loginFactory?.createLoginInspector(),
+           inspector.check(enteredLogin: username, enteredPassword: passwordField.text ?? "") == true {
+            
+            let profileVC = ProfileViewController(userData: userService, userName: username)
+                navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                alertLoginPasswd()
+            }
+}
+
 
     
     // MARK: - Keyboard notifications

@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotoCollectionViewController: UIViewController {
+class PhotoCollectionViewController: UIViewController, ImageLibrarySubscriber {
+    let imagePublisherFacade = ImagePublisherFacade()
+    var loadedImages = [UIImage]()
+    
+    func receive(images: [UIImage]) {
+        loadedImages = images
+        collectionView.reloadData()
+    }
+    
+  
+    
     
     private let layout = UICollectionViewFlowLayout()
     
@@ -44,6 +55,7 @@ class PhotoCollectionViewController: UIViewController {
         
         ]
         NSLayoutConstraint.activate(constraints)
+        imagePublisherFacade.addImagesWithTimer(time: 5, repeat: 30)
 
     }
     

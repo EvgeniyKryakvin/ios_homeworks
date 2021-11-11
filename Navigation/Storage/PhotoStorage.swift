@@ -32,6 +32,7 @@ struct PhotoStorage {
         UIImage(named: "yamahabolt")!,
         UIImage(named: "yamahafz")!,
         UIImage(named: "yamahaxsr900")!,
+        UIImage(named: "Lynx")!
         
     ]
 }

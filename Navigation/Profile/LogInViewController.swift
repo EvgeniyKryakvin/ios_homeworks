@@ -101,22 +101,22 @@ class LogInViewController: UIViewController {
         return logInButton
     }()
     
-    @objc private func logInButtonPressed() {
-        #if DEBUG
-        if let username = usernameTextField.text,
-            let _ = testUserService.checkUser(userName: username) {
-            let testVC = ProfileViewController(userData: testUserService, userName: username)
-            navigationController?.pushViewController(testVC, animated: true)} else { print("Can't find user")}
-        #else
-        if let username = usernameTextField.text,
-           let _ = logInUserService.checkUser(userName: username) {
-            let vc = ProfileViewController(userData: logInUserService, userName: username)
-            navigationController?.pushViewController(vc, animated: true)} else { print("Can't find user")}
-
-        #endif
-        
-        
-    }
+//    @objc private func logInButtonPressed() {
+//        #if DEBUG
+//        if let username = usernameTextField.text,
+//            let _ = testUserService.checkUser(userName: username) {
+//            let testVC = ProfileViewController(userData: testUserService, userName: username)
+//            navigationController?.pushViewController(testVC, animated: true)} else { print("Can't find user")}
+//        #else
+//        if let username = usernameTextField.text,
+//           let _ = logInUserService.checkUser(userName: username) {
+//            let vc = ProfileViewController(userData: logInUserService, userName: username)
+//            navigationController?.pushViewController(vc, animated: true)} else { print("Can't find user")}
+//
+//        #endif
+//        
+//        
+//    }
     
 
     private func alertLoginPasswd() {
@@ -127,7 +127,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func logInButtonPressed() {
-        
+
         #if DEBUG
         let userService = CurrentUserService()
         #else

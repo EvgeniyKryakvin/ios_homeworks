@@ -43,17 +43,24 @@ class ProfileHeaderView: UIView{
          return avatarImageView
          }()
  
-     private let setStatusButton: UIButton = {
-         let setStatusButton = UIButton()
-         setStatusButton.backgroundColor = .systemBlue
-         setStatusButton.setTitle("Set status", for: .normal)
+     private lazy var setStatusButton: CustomButton = {
+        let setStatusButton = CustomButton(title: "Set status", titleColor: .white, backgroundColor: .systemBlue, backgroundImage: nil) {[self] in
+            if self.statusTextField.text != "" {
+                self.statusLabel.text = self.statusTextField.text
+                    }
+                   else {
+                    self.statusLabel.text = "Waiting for something..."
+                    }
+        }
+//         setStatusButton.backgroundColor = .systemBlue
+//         setStatusButton.setTitle("Set status", for: .normal)
          setStatusButton.layer.cornerRadius = 4
          setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
          setStatusButton.layer.shadowRadius = 4
          setStatusButton.layer.shadowColor = UIColor.black.cgColor
          setStatusButton.layer.shadowOpacity = 0.7
-         setStatusButton.setTitleColor(UIColor.white, for: .normal)
-         setStatusButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
+//         setStatusButton.setTitleColor(UIColor.white, for: .normal)
+//         setStatusButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
          setStatusButton.translatesAutoresizingMaskIntoConstraints = false
          return setStatusButton
      }()
@@ -138,13 +145,13 @@ class ProfileHeaderView: UIView{
          setupViews()
      }
  
-     @objc func statusButtonPressed() {
-         if statusTextField.text != "" {
-                    statusLabel.text = statusTextField.text
-                 }
-                else {
-                 statusLabel.text = "Waiting for something..."
-                 }
-     }
+//     @objc func statusButtonPressed() {
+//         if statusTextField.text != "" {
+//                    statusLabel.text = statusTextField.text
+//                 }
+//                else {
+//                 statusLabel.text = "Waiting for something..."
+//                 }
+//     }
  
 }

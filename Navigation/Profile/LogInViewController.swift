@@ -85,38 +85,57 @@ class LogInViewController: UIViewController {
         return separatorLine
     }()
     
-    private let logInButton: UIButton = {
-        let logInButton = UIButton()
+    private lazy var logInButton: CustomButton = {
+        let logInButton = CustomButton(title: "Log in", titleColor: .white, backgroundColor: nil, backgroundImage: UIImage(named: "blue_pixel")) {[self] in
+            #if DEBUG
+            let userService = CurrentUserService()
+            #else
+            let userService = TestUserService()
+            #endif
+        
+
+            
+            if let username = self.usernameTextField.text,
+               let inspector = self.loginFactory?.createLoginInspector(),
+               inspector.check(enteredLogin: username, enteredPassword: self.passwordField.text ?? "") == true {
+                
+                let profileVC = ProfileViewController(userData: userService, userName: username)
+                self.navigationController?.pushViewController(profileVC, animated: true)
+                } else {
+                    self.alertLoginPasswd()
+                }
+        }
+        
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        logInButton.setTitleColor(.white, for: .normal)
-        logInButton.setTitleColor(.darkGray, for: .selected)
-        logInButton.setTitleColor(.darkGray, for: .highlighted)
-        logInButton.setTitleColor(.darkGray, for: .disabled)
-        logInButton.setTitle("Log in", for: .normal)
+//        logInButton.setTitleColor(.white, for: .normal)
+//        logInButton.setTitleColor(.darkGray, for: .selected)
+//        logInButton.setTitleColor(.darkGray, for: .highlighted)
+//        logInButton.setTitleColor(.darkGray, for: .disabled)
+//        logInButton.setTitle("Log in", for: .normal)
         logInButton.layer.cornerRadius = 10
         logInButton.clipsToBounds = true
-        logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
+//        logInButton.addTarget(self, action: #selector(logInButtonPressed), for: .touchUpInside)
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         
         return logInButton
     }()
     
-    @objc private func logInButtonPressed() {
-        #if DEBUG
-        if let username = usernameTextField.text,
-            let _ = testUserService.checkUser(userName: username) {
-            let testVC = ProfileViewController(userData: testUserService, userName: username)
-            navigationController?.pushViewController(testVC, animated: true)} else { print("Can't find user")}
-        #else
-        if let username = usernameTextField.text,
-           let _ = logInUserService.checkUser(userName: username) {
-            let vc = ProfileViewController(userData: logInUserService, userName: username)
-            navigationController?.pushViewController(vc, animated: true)} else { print("Can't find user")}
-
-        #endif
-        
-        
-    }
+//    @objc private func logInButtonPressed() {
+//        #if DEBUG
+//        if let username = usernameTextField.text,
+//            let _ = testUserService.checkUser(userName: username) {
+//            let testVC = ProfileViewController(userData: testUserService, userName: username)
+//            navigationController?.pushViewController(testVC, animated: true)} else { print("Can't find user")}
+//        #else
+//        if let username = usernameTextField.text,
+//           let _ = logInUserService.checkUser(userName: username) {
+//            let vc = ProfileViewController(userData: logInUserService, userName: username)
+//            navigationController?.pushViewController(vc, animated: true)} else { print("Can't find user")}
+//
+//        #endif
+//
+//
+//    }
     
 
     private func alertLoginPasswd() {
@@ -126,14 +145,14 @@ class LogInViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc private func logInButtonPressed() {
-        
-        #if DEBUG
-        let userService = CurrentUserService()
-        #else
-        let userService = TestUserService()
-        #endif
-    
+//    @objc private func logInButtonPressed() {
+//
+//        #if DEBUG
+//        let userService = CurrentUserService()
+//        #else
+//        let userService = TestUserService()
+//        #endif
+//
 //        if let username = usernameTextField.text, delegate?.check(enteredLogin: username, enteredPassword: passwordField.text ?? "") == true {
 //
 //        let profileVC = ProfileViewController(userData: userService, userName: username)
@@ -142,16 +161,16 @@ class LogInViewController: UIViewController {
 //            alertLoginPasswd()
 //        }
         
-        if let username = usernameTextField.text,
-           let inspector = loginFactory?.createLoginInspector(),
-           inspector.check(enteredLogin: username, enteredPassword: passwordField.text ?? "") == true {
-            
-            let profileVC = ProfileViewController(userData: userService, userName: username)
-                navigationController?.pushViewController(profileVC, animated: true)
-            } else {
-                alertLoginPasswd()
-            }
-}
+//        if let username = usernameTextField.text,
+//           let inspector = loginFactory?.createLoginInspector(),
+//           inspector.check(enteredLogin: username, enteredPassword: passwordField.text ?? "") == true {
+//
+//            let profileVC = ProfileViewController(userData: userService, userName: username)
+//                navigationController?.pushViewController(profileVC, animated: true)
+//            } else {
+//                alertLoginPasswd()
+//            }
+//}
 
 
     
